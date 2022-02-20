@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Open Cart Test Suite" verbose="4" thread-count="3" parallel="tests">
+
+	<listeners>
+		<listener class-name="com.qa.opencart.Listener.AnnotationTransformer" />
+		<listener class-name="com.qa.opencart.Listener.ExtentReportListener" />
+		<listener class-name="com.qa.opencart.Listener.TestAllureListener" />
+	</listeners>
+	
+	<test name="Open Cart Login Page Test">
+		<classes>
+			<class name="com.qa.opencart.tests.LoginPageTest"></class>
+		</classes>
+	</test>
+	
+	<test name="Open Cart Account Page Test">
+		<classes>
+			<class name="com.qa.opencart.tests.AccountPageTest"></class>
+		</classes>
+	</test>
+	
+	<test name="Open Cart ProductInfo Page Test">
+		<classes>
+			<class name="com.qa.opencart.tests.ProductInfoTest"></class>
+		</classes>
+	</test>
+	
+	<!-- <test name="Open Cart Registration Page Test">
+		<classes>
+			<class name="com.qa.opencart.tests.RegistrationPageTest"></class>
+		</classes>
+	</test> -->
+
+</suite>
