@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import com.qa.opencart.util.Constants;
 import com.qa.opencart.util.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class LoginPage {
 	
 	//1. Declared private driver
@@ -27,6 +29,8 @@ public class LoginPage {
 	private By errorMsgEle = By.cssSelector("div.alert.alert-danger.alert-dismissible");
 	
 	
+	//Page Actions:
+	@Step("getting loging page title....")
 	public String getLogingPageTitle() {
 		//return driver.getTitle();
 		return eleUtil.doGetTitle(Constants.LOGIN_PAGE_TITLE, Constants.DEFAULT_TIME_OUT);
