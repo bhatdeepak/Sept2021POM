@@ -7,7 +7,7 @@ public class Constants {
 	
 	public static final String LOGIN_PAGE_TITLE = "Account Login";
 	public static final String LOGIN_PAGE_URL = "https://demo.opencart.com/index.php?route=account/login";
-	public static final int DEFAULT_TIME_OUT = 5;
+	public static final int DEFAULT_TIME_OUT = 7;
 	public static final String ACCOUNT_PAGE_TITLE = "My Account";
 	public static final String ACCOUNT_PAGE_HEADER = "Your Store";
 	public static final String LOGIN_ERROR_MSG = "No match for E-Mail Address and/or Password";

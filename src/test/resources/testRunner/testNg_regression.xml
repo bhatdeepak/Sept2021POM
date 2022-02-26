@@ -15,7 +15,7 @@
 		</classes>
 	</test>
 	
-	<test name="Open Cart Account Page Test">
+	<test name="Open Cart Account Page Test"> 
 		<classes>
 			<class name="com.qa.opencart.tests.AccountPageTest"></class>
 		</classes>
