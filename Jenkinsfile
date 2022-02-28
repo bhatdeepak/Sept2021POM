@@ -1,37 +1,68 @@
 pipeline{
-    
-    agent any
-    
-    stages{
-        stage("Build"){
-            steps{
-                echo("Build")
-            }
-        }
-        stage("Run UTs"){
-            steps{
-                echo("Run Uts")
-            }
-        }
-        stage("Deploy to QA"){
-            steps{
-                echo("QA Deployment")
-            }
-        }
-        stage("Run Automation Regression Tests"){
-            steps{
-                echo("Run regression tests")
-            }
-        }
-        stage("Stage Deployment"){
-            steps{
-                echo("Stage Deployment")
-            }
-        }
-        stage("Prod Deployment"){
-            steps{
-                echo("prod Deployment")
-            }
-        }
-    }
-}
+
+	agent any
+	
+	tools{
+		maven 'maven'
+		}
+		
+	stages{
+		stage("Build"')
+		{
+			steps
+			{
+				git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+				sh "mvn -Dmaven.test.failure.ignore=true clean package"
+			}
+			post
+			{
+				success
+				{
+					junit '**/target/surefire-reports/TEST-*.xml'
+					archiveArtifacts 'target/*.jar'
+				}
+			}
+		}
+		
+		stage('Regression automation test')
+		{
+			Steps
+			{
+				catchError(buildResult: 'Success', stageResult: 'Failure'){
+					git 'https://github.com/bhatdeepak/Sept2021POM.git'
+					sh "mvn clean install"
+				}
+			}
+		}
+		
+		stage('Publish allure reports')
+		{
+			steps
+			{
+				script{
+					allure([
+						includeProperties: false,
+						jdk: '',
+						properties: [],
+						reportBuildPolicy: 'ALWAYS',
+						results: [[path: '/allure-results']]	
+						])
+					}
+			}
+		}			
+						
+		stage('publish extent report')
+		{
+			steps{
+					publishHTML([allowMissing: false,
+								alwaysLinkToLastBuild: false,
+								keepAll: false,
+								reportDir: 'build',
+								reportFiles: 'TestExecutionReport.html',
+								reportName: 'HTML Extent Report'
+								reportTitles: ''])
+				}
+		}
+		
+	}
+}										 				
