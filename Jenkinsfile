@@ -26,7 +26,7 @@ pipeline{
 		
 		stage('Regression automation test')
 		{
-			Steps
+			steps
 			{
 				catchError(buildResult: 'Success', stageResult: 'Failure'){
 					git 'https://github.com/bhatdeepak/Sept2021POM.git'
@@ -59,7 +59,7 @@ pipeline{
 								keepAll: false,
 								reportDir: 'build',
 								reportFiles: 'TestExecutionReport.html',
-								reportName: 'HTML Extent Report'
+								reportName: 'HTML Extent Report',
 								reportTitles: ''])
 				}
 		}
